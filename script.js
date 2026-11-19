@@ -191,3 +191,90 @@ function showSens() {
 on(['#q'], showSens); showSens();
 $('#cats').innerHTML = ['Todos', ...new Set(SENS.map(s => s[1]))].map(c => `<button data-c="${c}" class="${c === 'Todos' ? 'on' : ''}">${c}</button>`).join('');
 $('#cats').onclick = e => { const b = e.target.closest('button'); if (!b) return; cat = b.dataset.c; $$('#cats button').forEach(x => x.classList.toggle('on', x === b)); showSens(); };
+
+const TC_DATA = {"B":{"min":0,"max":1820,"segments":[{"min":0,"max":630.615,"c":[0,-0.00024650818346,0.0000059040421171,-1.3257931636e-9,1.5668291901e-12,-1.694452924e-15,6.2990347094e-19],"exp":null},{"min":630.615,"max":1820,"c":[-3.8938168621,0.02857174747,-0.000084885104785,1.5785280164e-7,-1.6835344864e-10,1.1109794013e-13,-4.4515431033e-17,9.8975640821e-21,-9.3791330289e-25],"exp":null}]},"E":{"min":-270,"max":1000,"segments":[{"min":-270,"max":0,"c":[0,0.058665508708,0.000045410977124,-7.7998048686e-7,-2.5800160843e-8,-5.9452583057e-10,-9.3214058667e-12,-1.0287605534e-13,-8.0370123621e-16,-4.3979497391e-18,-1.6414776355e-20,-3.9673619516e-23,-5.5827328721e-26,-3.4657842013e-29],"exp":null},{"min":0,"max":1000,"c":[0,0.05866550871,0.000045032275582,2.8908407212e-8,-3.3056896652e-10,6.502440327e-13,-1.9197495504e-16,-1.2536600497e-18,2.1489217569e-21,-1.4388041782e-24,3.5960899481e-28],"exp":null}]},"J":{"min":-210,"max":1200,"segments":[{"min":-210,"max":760,"c":[0,0.050381187815,0.00003047583693,-8.568106572e-8,1.3228195295e-10,-1.7052958337e-13,2.0948090697e-16,-1.2538395336e-19,1.5631725697e-23],"exp":null},{"min":760,"max":1200,"c":[296.45625681,-1.4976127786,0.0031787103924,-0.0000031847686701,1.5720819004e-9,-3.0691369056e-13],"exp":null}]},"K":{"min":-270,"max":1372,"segments":[{"min":-270,"max":0,"c":[0,0.039450128025,0.000023622373598,-3.2858906784e-7,-4.9904828777e-9,-6.7509059173e-11,-5.7410327428e-13,-3.1088872894e-15,-1.0451609365e-17,-1.9889266878e-20,-1.6322697486e-23],"exp":null},{"min":0,"max":1372,"c":[-0.017600413686,0.038921204975,0.000018558770032,-9.9457592874e-8,3.1840945719e-10,-5.6072844889e-13,5.6075059059e-16,-3.2020720003e-19,9.7151147152e-23,-1.2104721275e-26],"exp":{"a0":0.1185976,"a1":-0.0001183432,"a2":126.9686}}]},"N":{"min":-270,"max":1300,"segments":[{"min":-270,"max":0,"c":[0,0.026159105962,0.000010957484228,-9.3841111554e-8,-4.6412039759e-11,-2.6303357716e-12,-2.2653438003e-14,-7.6089300791e-17,-9.3419667835e-20],"exp":null},{"min":0,"max":1300,"c":[0,0.025929394601,0.00001571014188,4.3825627237e-8,-2.5261169794e-10,6.4311819339e-13,-1.0063471519e-15,9.9745338992e-19,-6.0863245607e-22,2.0849229339e-25,-3.0682196151e-29],"exp":null}]},"R":{"min":-50,"max":1768.1,"segments":[{"min":-50,"max":1064.18,"c":[0,0.00528961729765,0.0000139166589782,-2.38855693017e-8,3.56916001063e-11,-4.62347666298e-14,5.00777441034e-17,-3.73105886191e-20,1.57716482367e-23,-2.81038625251e-27],"exp":null},{"min":1064.18,"max":1664.5,"c":[2.95157925316,-0.00252061251332,0.0000159564501865,-7.64085947576e-9,2.05305291024e-12,-2.93359668173e-16],"exp":null},{"min":1664.5,"max":1768.1,"c":[152.232118209,-0.268819888545,0.000171280280471,-3.45895706453e-8,-9.34633971046e-15],"exp":null}]},"S":{"min":-50,"max":1768.1,"segments":[{"min":-50,"max":1064.18,"c":[0,0.00540313308631,0.000012593428974,-2.32477968689e-8,3.22028823036e-11,-3.31465196389e-14,2.55744251786e-17,-1.25068871393e-20,2.71443176145e-24],"exp":null},{"min":1064.18,"max":1664.5,"c":[1.32900444085,0.00334509311344,0.00000654805192818,-1.64856259209e-9,1.29989605174e-14],"exp":null},{"min":1664.5,"max":1768.1,"c":[146.628232636,-0.258430516752,0.000163693574641,-3.30439046987e-8,-9.43223690612e-15],"exp":null}]},"T":{"min":-270,"max":400,"segments":[{"min":-270,"max":0,"c":[0,0.038748106364,0.000044194434347,1.1844323105e-7,2.0032973554e-8,9.0138019559e-10,2.2651156593e-11,3.6071154205e-13,3.8493939883e-15,2.8213521925e-17,1.4251594779e-19,4.8768662286e-22,1.079553927e-24,1.3945027062e-27,7.9795153927e-31],"exp":null},{"min":0,"max":400,"c":[0,0.038748106364,0.00003329222788,2.0618243404e-7,-2.1882256846e-9,1.0996880928e-11,-3.0815758772e-14,4.547913529e-17,-2.7512901673e-20],"exp":null}]}};
+
+// ===== Ferramenta 8: Conversor de termopares (NIST ITS-90) =====
+const TC_NAMES = {
+  B: 'Platina-ródio / platina-ródio',
+  E: 'Cromel / constantan',
+  J: 'Ferro / constantan',
+  K: 'Cromel / alumel',
+  N: 'Nicrosil / nisil',
+  R: 'Platina-ródio 13% / platina',
+  S: 'Platina-ródio 10% / platina',
+  T: 'Cobre / constantan'
+};
+const tcType = $('#tc_type');
+tcType.innerHTML = Object.keys(TC_DATA).map(k => `<option value="${k}">Tipo ${k}</option>`).join('');
+function tcPoly(coeffs, x) {
+  let y = 0;
+  for (let i = coeffs.length - 1; i >= 0; i--) y = y * x + coeffs[i];
+  return y;
+}
+function tcEmf(type, temp) {
+  const spec = TC_DATA[type];
+  if (!spec || temp < spec.min || temp > spec.max) throw new Error('Temperatura fora da faixa de referência.');
+  const seg = spec.segments.find((s, i) => temp >= s.min && (temp < s.max || i === spec.segments.length - 1));
+  let emf = tcPoly(seg.c, temp);
+  if (seg.exp && temp >= 0) emf += seg.exp.a0 * Math.exp(seg.exp.a1 * Math.pow(temp - seg.exp.a2, 2));
+  return emf;
+}
+function tcTemperature(type, emf) {
+  const spec = TC_DATA[type];
+  // Tipo B não é unívoco abaixo de aproximadamente 250 °C.
+  let lo = type === 'B' ? 250 : spec.min;
+  let hi = spec.max;
+  let flo = tcEmf(type, lo), fhi = tcEmf(type, hi);
+  if (emf < flo - 1e-9 || emf > fhi + 1e-9) {
+    if (type === 'B' && emf < flo) throw new Error('No tipo B, a conversão mV → °C não é unívoca abaixo de aproximadamente 250 °C. Use a tabela ou informe a temperatura dentro da faixa válida de inversão.');
+    throw new Error('Tensão compensada fora da faixa de referência deste termopar.');
+  }
+  for (let i = 0; i < 90; i++) {
+    const mid = (lo + hi) / 2;
+    if (tcEmf(type, mid) < emf) lo = mid; else hi = mid;
+  }
+  return (lo + hi) / 2;
+}
+function tcUpdateInfo() {
+  const type = tcType.value, spec = TC_DATA[type];
+  $('#tc_range').textContent = `${fmt(spec.min)} a ${fmt(spec.max)} °C`;
+  $('#tc_pair').textContent = TC_NAMES[type];
+  $('#tc_mode_label').textContent = $('#tc_mode').value === 'mv2t' ? 'Tensão medida (mV)' : 'Temperatura da junta quente (°C)';
+  $('#tc_ref_label').textContent = $('#tc_mode').value === 'mv2t' ? 'Temperatura da junta de referência (°C)' : 'Temperatura da junta de referência (°C)';
+  $('#tc_value').value = $('#tc_mode').value === 'mv2t' ? '4.096' : '100';
+  $('#tc_ref').value = '0';
+  calcTC();
+}
+function calcTC() {
+  const type = tcType.value, mode = $('#tc_mode').value;
+  const value = num('#tc_value'), ref = num('#tc_ref'), out = $('#tc_out');
+  if (!Number.isFinite(value) || !Number.isFinite(ref)) return out.innerHTML = err('Informe valores numéricos válidos.');
+  try {
+    const refEmf = tcEmf(type, ref);
+    if (mode === 'mv2t') {
+      const hotEmf = value + refEmf;
+      const temp = tcTemperature(type, hotEmf);
+      out.innerHTML = `<div class="bx"><div class="m">Temperatura da junta quente</div><div class="val">${fmt(temp)} <small>°C</small></div></div>
+        <div class="sc"><span>mV medido</span><b>${fmt(value)} mV</b></div>
+        <div class="sc"><span>Compensação da junta de referência</span><b>${fmt(refEmf)} mV</b></div>
+        <div class="sc"><span>mV equivalente a 0 °C</span><b>${fmt(hotEmf)} mV</b></div>
+        <p class="note">A compensação foi calculada somando a FEM da junta de referência à tensão medida.</p>`;
+    } else {
+      const hotEmf = tcEmf(type, value);
+      const measured = hotEmf - refEmf;
+      out.innerHTML = `<div class="bx"><div class="m">Tensão entre os terminais</div><div class="val">${fmt(measured)} <small>mV</small></div></div>
+        <div class="sc"><span>FEM da junta quente (referência 0 °C)</span><b>${fmt(hotEmf)} mV</b></div>
+        <div class="sc"><span>FEM da junta de referência</span><b>${fmt(refEmf)} mV</b></div>
+        <p class="note">Resultado diferencial: FEM da junta quente menos FEM da junta de referência.</p>`;
+    }
+  } catch (e) {
+    out.innerHTML = err(e.message);
+  }
+}
+tcType.onchange = tcUpdateInfo;
+$('#tc_mode').onchange = tcUpdateInfo;
+on(['#tc_value', '#tc_ref'], calcTC);
+$('#tc_table').innerHTML = '<thead><tr><th>Tipo</th><th>Faixa de referência</th><th>Par termoelétrico</th></tr></thead><tbody>' +
+  Object.keys(TC_DATA).map(k => `<tr><td><b>${k}</b></td><td>${fmt(TC_DATA[k].min)} a ${fmt(TC_DATA[k].max)} °C</td><td>${TC_NAMES[k]}</td></tr>`).join('') + '</tbody>';
+tcUpdateInfo();
