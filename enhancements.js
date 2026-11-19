@@ -16,6 +16,7 @@
       <button class="tab" role="tab" aria-selected="false" data-p="p-ele">Corrente e cabos</button>
       <button class="tab" role="tab" aria-selected="false" data-p="p-sens">Sensores</button>
       <button class="tab" role="tab" aria-selected="false" data-p="p-panel">Dimensionamento de painéis</button>
+      <button class="tab" role="tab" aria-selected="false" data-p="p-thermo">Termopares</button>
       <button class="tab" role="tab" aria-selected="false" data-p="p-ladder">Lógicas Ladder</button>
     </div>
     <div class="pane" id="p-signal" hidden>
@@ -68,8 +69,89 @@
       <button class="btn sm" id="pn-calc" type="button">Atualizar dimensionamento</button>
       </div><div class="out"><h3>Lista estimada de materiais</h3><div id="pn-results" aria-live="polite"></div><h3>Estimativa de cabos por cor</h3><div id="pn-cables"></div><div class="bom-download"><p class="m">Baixe a relação completa de materiais e cabos para conferência e cotação.</p><button class="btn" id="pn-download" type="button" disabled>Baixar lista de materiais (CSV)</button></div><div class="bx"><div class="m">Dimensão informada</div><div class="val" id="pn-dim">2,10 × 0,80 m</div></div></div>
     </div>
+    <div class="pane" id="p-thermo" hidden>
+      <div class="in"><h3>Conversor de termopares – ITS-90</h3>
+        <label for="tc_type">Tipo de termopar</label><select id="tc_type"></select>
+        <div class="sc"><span>Faixa de referência</span><b id="tc_range">—</b></div>
+        <div class="sc"><span>Par termoelétrico</span><b id="tc_pair">—</b></div>
+        <label for="tc_mode">Conversão</label><select id="tc_mode"><option value="mv2t">mV → Temperatura</option><option value="t2mv">Temperatura → mV</option></select>
+        <label for="tc_value" id="tc_mode_label">Tensão medida (mV)</label><input id="tc_value" inputmode="decimal" value="4.096">
+        <label for="tc_ref">Temperatura da junta de referência (°C)</label><input id="tc_ref" inputmode="decimal" value="0">
+        <p class="note">Informe 0 °C quando a medição já estiver compensada pelo instrumento ou quando usar uma junta de referência em banho de gelo. Caso contrário, informe a temperatura real dos terminais de referência.</p>
+      </div>
+      <div class="out" aria-live="polite"><h3>Resultado</h3><div id="tc_out"></div>
+        <p class="fm">E<sub>quente</sub> = E<sub>medida</sub> + E(T<sub>referência</sub>)</p>
+      </div>
+      <div class="in tc-reference"><h3>Faixas dos tipos de termopar</h3><div class="scroll"><table id="tc_table" class="tc-table"></table></div>
+        <p class="note">Faixas das funções de referência ITS-90; não representam necessariamente a faixa operacional contínua de qualquer sonda comercial. Consulte a classe de tolerância, o revestimento e os limites do fabricante.</p>
+        <p class="note">No tipo B, a relação FEM-temperatura não é unívoca na região inferior a aproximadamente 250 °C; por isso, a conversão inversa é limitada à região em que há uma única solução.</p>
+      </div>
+    </div>
     <div class="pane one" id="p-ladder" hidden><div class="in"><h3>Exemplos básicos de lógica Ladder industrial</h3><p class="m">Diagramas didáticos para estudo. As lógicas devem ser adaptadas às condições de segurança e ao hardware da máquina.</p><div id="ladder-list" class="grid ladder-grid"></div></div></div>
   `;
+
+  // Inicializa o conversor de termopares após recriar a área de ferramentas.
+  const tcNames = {
+    B:'Platina-ródio / platina-ródio', E:'Cromel / constantan',
+    J:'Ferro / constantan', K:'Cromel / alumel', N:'Nicrosil / nisil',
+    R:'Platina-ródio 13% / platina', S:'Platina-ródio 10% / platina',
+    T:'Cobre / constantan'
+  };
+  const tcType=$('#tc_type');
+  tcType.innerHTML=Object.keys(TC_DATA).map(k=>`<option value="${k}">Tipo ${k}</option>`).join('');
+  function tcPoly(coeffs,x){let y=0;for(let i=coeffs.length-1;i>=0;i--)y=y*x+coeffs[i];return y;}
+  function tcEmf(type,temp){
+    const spec=TC_DATA[type];
+    if(!spec||temp<spec.min||temp>spec.max)throw new Error('Temperatura fora da faixa de referência.');
+    const seg=spec.segments.find((s,i)=>temp>=s.min&&(temp<s.max||i===spec.segments.length-1));
+    let emf=tcPoly(seg.c,temp);
+    if(seg.exp&&temp>=0)emf+=seg.exp.a0*Math.exp(seg.exp.a1*Math.pow(temp-seg.exp.a2,2));
+    return emf;
+  }
+  function tcTemperature(type,emf){
+    const spec=TC_DATA[type];let lo=type==='B'?250:spec.min,hi=spec.max;
+    const flo=tcEmf(type,lo),fhi=tcEmf(type,hi);
+    if(emf<flo-1e-9||emf>fhi+1e-9){
+      if(type==='B'&&emf<flo)throw new Error('No tipo B, a conversão mV → °C não é unívoca abaixo de aproximadamente 250 °C.');
+      throw new Error('Tensão compensada fora da faixa de referência deste termopar.');
+    }
+    for(let i=0;i<90;i++){const mid=(lo+hi)/2;if(tcEmf(type,mid)<emf)lo=mid;else hi=mid;}
+    return (lo+hi)/2;
+  }
+  function calcTC(){
+    const type=tcType.value,mode=$('#tc_mode').value,value=num('#tc_value'),ref=num('#tc_ref'),out=$('#tc_out');
+    if(!Number.isFinite(value)||!Number.isFinite(ref))return out.innerHTML=err('Informe valores numéricos válidos.');
+    try{
+      const refEmf=tcEmf(type,ref);
+      if(mode==='mv2t'){
+        const hotEmf=value+refEmf,temp=tcTemperature(type,hotEmf);
+        out.innerHTML=`<div class="bx"><div class="m">Temperatura da junta quente</div><div class="val">${fmt(temp)} <small>°C</small></div></div>
+          <div class="sc"><span>mV medido</span><b>${fmt(value)} mV</b></div>
+          <div class="sc"><span>Compensação da junta de referência</span><b>${fmt(refEmf)} mV</b></div>
+          <div class="sc"><span>mV equivalente a 0 °C</span><b>${fmt(hotEmf)} mV</b></div>
+          <p class="note">A compensação foi calculada somando a FEM da junta de referência à tensão medida.</p>`;
+      }else{
+        const hotEmf=tcEmf(type,value),measured=hotEmf-refEmf;
+        out.innerHTML=`<div class="bx"><div class="m">Tensão entre os terminais</div><div class="val">${fmt(measured)} <small>mV</small></div></div>
+          <div class="sc"><span>FEM da junta quente (referência 0 °C)</span><b>${fmt(hotEmf)} mV</b></div>
+          <div class="sc"><span>FEM da junta de referência</span><b>${fmt(refEmf)} mV</b></div>
+          <p class="note">Resultado diferencial: FEM da junta quente menos FEM da junta de referência.</p>`;
+      }
+    }catch(e){out.innerHTML=err(e.message);}
+  }
+  function updateTCInfo(){
+    const type=tcType.value,spec=TC_DATA[type];
+    $('#tc_range').textContent=`${fmt(spec.min)} a ${fmt(spec.max)} °C`;
+    $('#tc_pair').textContent=tcNames[type];
+    $('#tc_mode_label').textContent=$('#tc_mode').value==='mv2t'?'Tensão medida (mV)':'Temperatura da junta quente (°C)';
+    calcTC();
+  }
+  tcType.addEventListener('change',updateTCInfo);
+  $('#tc_mode').addEventListener('change',()=>{$('#tc_value').value=$('#tc_mode').value==='mv2t'?'4.096':'100';updateTCInfo();});
+  ['#tc_value','#tc_ref'].forEach(id=>$(id).addEventListener('input',calcTC));
+  $('#tc_table').innerHTML='<thead><tr><th>Tipo</th><th>Faixa de referência</th><th>Par termoelétrico</th></tr></thead><tbody>'+
+    Object.keys(TC_DATA).map(k=>`<tr><td><b>${k}</b></td><td>${fmt(TC_DATA[k].min)} a ${fmt(TC_DATA[k].max)} °C</td><td>${tcNames[k]}</td></tr>`).join('')+'</tbody>';
+  updateTCInfo();
 
   // Navegação das ferramentas e páginas independentes do site.
   const tabs=[...plat.querySelectorAll('.tab')], panes=[...plat.querySelectorAll('.pane')];
@@ -96,7 +178,7 @@
   }));
   document.querySelectorAll('[data-go]').forEach(b=>{b.onclick=null;b.addEventListener('click',()=>{
     showPage('ferramentas');
-    const map={p1:'p-signal',p2:'p-un',p3:'p-ele',p4:'p-ele',p5:'p-sens',p6:'p-rtd',p7:'p-panel',p8:'p-ladder'};
+    const map={p1:'p-signal',p2:'p-un',p3:'p-ele',p4:'p-ele',p5:'p-sens',p6:'p-rtd',p7:'p-panel',p8:'p-thermo'};
     openPane(map[b.dataset.go]||b.dataset.go);
     $('#plat').scrollIntoView({behavior:'auto',block:'start'});
   });});
