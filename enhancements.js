@@ -74,7 +74,7 @@
         <label for="tc_type">Tipo de termopar</label><select id="tc_type"></select>
         <div class="sc"><span>Faixa de referência</span><b id="tc_range">—</b></div>
         <div class="sc"><span>Par termoelétrico</span><b id="tc_pair">—</b></div>
-        <label for="tc_mode">Conversão</label><select id="tc_mode"><option value="mv2t">mV → Temperatura</option><option value="t2mv">Temperatura → mV</option></select>
+        <label for="tc_mode">Conversão</label><select id="tc_mode"><option value="mv2t">Tensão (mV) → Temperatura (°C)</option><option value="t2mv">Temperatura (°C) → Tensão (mV)</option></select>
         <label for="tc_value" id="tc_mode_label">Tensão medida (mV)</label><input id="tc_value" inputmode="decimal" value="4.096">
         <label for="tc_ref">Temperatura da junta de referência (°C)</label><input id="tc_ref" inputmode="decimal" value="0">
         <p class="note">Informe 0 °C quando a medição já estiver compensada pelo instrumento ou quando usar uma junta de referência em banho de gelo. Caso contrário, informe a temperatura real dos terminais de referência.</p>
@@ -132,10 +132,11 @@
           <p class="note">A compensação foi calculada somando a FEM da junta de referência à tensão medida.</p>`;
       }else{
         const hotEmf=tcEmf(type,value),measured=hotEmf-refEmf;
-        out.innerHTML=`<div class="bx"><div class="m">Tensão entre os terminais</div><div class="val">${fmt(measured)} <small>mV</small></div></div>
+        out.innerHTML=`<div class="bx"><div class="m">Tensão calculada nos terminais</div><div class="val">${fmt(measured)} <small>mV</small></div></div>
+          <div class="sc"><span>Temperatura informada</span><b>${fmt(value)} °C</b></div>
           <div class="sc"><span>FEM da junta quente (referência 0 °C)</span><b>${fmt(hotEmf)} mV</b></div>
-          <div class="sc"><span>FEM da junta de referência</span><b>${fmt(refEmf)} mV</b></div>
-          <p class="note">Resultado diferencial: FEM da junta quente menos FEM da junta de referência.</p>`;
+          <div class="sc"><span>Compensação da junta de referência</span><b>${fmt(refEmf)} mV</b></div>
+          <p class="note">${Math.abs(ref)<1e-12?'Como a junta de referência está a 0 °C, a tensão calculada é a FEM tabelada do termopar.':'Tensão nos terminais = FEM da junta quente − FEM da junta de referência.'}</p>`;
       }
     }catch(e){out.innerHTML=err(e.message);}
   }
