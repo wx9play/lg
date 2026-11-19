@@ -1,0 +1,25 @@
+LG TECH AUTOMACAO - SITE E FERRAMENTAS
+
+Arquivos principais:
+- index.html: estrutura das páginas e área de ferramentas
+- style.css: identidade visual e estilos responsivos
+- script.js: navegação, componentes e comportamentos originais
+- enhancements.js: conversores ampliados, PT100 bidirecional, calculadora elétrica/cabos, catálogo de 24 instrumentos, dimensionador de painéis e exemplos Ladder
+- assets/: imagens utilizadas pelo site
+
+Para visualizar localmente, abra index.html em um navegador moderno. Mantenha a pasta assets e os arquivos JavaScript/CSS na mesma estrutura.
+
+Observações técnicas:
+- O conversor PT100 usa a equação IEC 60751 e considera faixa de -200 a 850 °C.
+- Conversões de mmH2O e mH2O consideram água com densidade de referência de 1.000 kg/m³ e gravidade padrão de 9,80665 m/s².
+- A calculadora de corrente e cabos é uma estimativa educativa e não substitui projeto elétrico ou verificação normativa.
+- O dimensionador de painéis reproduz as expressões da planilha Excel fornecida; confirme os resultados conforme o projeto executivo e os componentes escolhidos.
+- Os diagramas Ladder são exemplos didáticos e devem ser adaptados à aplicação e às funções de segurança da máquina.
+
+
+Formulário de orçamento:
+- O envio é realizado pelo EmailJS (service_scgt8bh / template_i5fjdmr).
+- Após um envio confirmado, o navegador bloqueia novos envios por 12 horas usando localStorage.
+- O botão apresenta a contagem regressiva e é liberado automaticamente ao fim do período.
+- O bloqueio é local ao navegador/dispositivo e pode ser reiniciado ao limpar os dados do site ou usar outro navegador/dispositivo.
+- O intervalo só é iniciado após o EmailJS confirmar o envio; falhas não ativam o bloqueio.
