@@ -264,4 +264,4 @@ main,main>section,.alt,.hero,.home-highlights,.strip,.ft{background-color:transp
 .header-contact:hover{background:var(--green,#00a716);color:#071007}
 @media(max-width:760px){.header-contact{margin:10px 0 0;align-self:flex-start}}
 /* Centraliza somente o texto do botão principal, preservando seu visual. */
-.hero-actions a.btn[href="#servicos"]{display:inline-flex;align-items:center;justify-content:center;text-align:center}
+.hero-actions a.btn[href="#servicos"]{display:inline-flex;align-items:center;justify-content:center;width:46px;height:46px;min-height:46px;padding:0;flex:0 0 46px;align-self:flex-start;overflow:hidden;font-size:0;color:transparent!important;background:#ff69b4!important;border:1px solid #ff69b4!important;border-radius:0;box-shadow:none!important;text-align:center}
