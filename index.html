@@ -93,6 +93,7 @@
     <article class="card"><i class="ic big" data-i="wave"></i><h3>Conversores de Sinais</h3><p>Sinais industriais (4–20 mA, 0–10 V, % de escala) e valores de engenharia.</p><button class="btn out sm" data-go="p1">Acessar ferramenta ›</button></article>
     <article class="card"><i class="ic big" data-i="monitor"></i><h3>Conversor de Unidades</h3><p>Pressão, coluna d’água, temperatura, vazão, elétrica e outras grandezas.</p><button class="btn out sm" data-go="p2">Acessar ferramenta ›</button></article>
     <article class="card"><i class="ic big" data-i="sensor"></i><h3>Conversor RTD PT100</h3><p>Conversão de resistência para temperatura e de temperatura para resistência.</p><button class="btn out sm" data-go="p6">Acessar ferramenta ›</button></article>
+    <article class="card"><i class="ic big" data-i="sensor"></i><h3>Conversor de Termopares</h3><p>Conversão de mV e temperatura para os tipos B, E, J, K, N, R, S e T, com compensação da junta de referência.</p><button class="btn out sm" data-go="p8">Acessar ferramenta ›</button></article>
     <article class="card"><i class="ic big" data-i="ladder"></i><h3>Exemplos de Lógica</h3><p>Lógicas Ladder: partida de motor, controle de nível, intertravamentos e temporizadores.</p><button class="btn out sm" data-go="p8">Acessar exemplos ›</button></article>
     <article class="card"><i class="ic big" data-i="currentCable"></i><h3>Corrente e Dimensionamento de Cabos</h3><p>Cálculo de corrente, ampacidade e queda de tensão em um único utilitário.</p><button class="btn out sm" data-go="p3">Acessar ferramenta ›</button></article>
   </div>
@@ -101,6 +102,7 @@
       <button class="tab on" role="tab" aria-selected="true" data-p="p1">Sinais</button>
       <button class="tab" role="tab" aria-selected="false" data-p="p2">Unidades</button>
       <button class="tab" role="tab" aria-selected="false" data-p="p6">RTD PT100</button>
+      <button class="tab" role="tab" aria-selected="false" data-p="p8">Termopares</button>
       <button class="tab" role="tab" aria-selected="false" data-p="p3">Corrente elétrica</button>
       <button class="tab" role="tab" aria-selected="false" data-p="p4">Cabos</button>
       <button class="tab" role="tab" aria-selected="false" data-p="p5">Sensores</button>
@@ -134,6 +136,24 @@
       <div class="out" aria-live="polite"><h3>Resultado</h3><div id="r_out"></div><p class="note">Equação conforme IEC 60751. Faixa de uso: −200 a 850 °C.</p></div>
     </div>
 
+    <div class="pane" id="p8" role="tabpanel" hidden>
+      <div class="in"><h3>Conversor de termopares – ITS-90</h3>
+        <label for="tc_type">Tipo de termopar</label><select id="tc_type"></select>
+        <div class="sc"><span>Faixa de referência</span><b id="tc_range">—</b></div>
+        <div class="sc"><span>Par termoelétrico</span><b id="tc_pair">—</b></div>
+        <label for="tc_mode">Conversão</label><select id="tc_mode"><option value="mv2t">mV → Temperatura</option><option value="t2mv">Temperatura → mV</option></select>
+        <label for="tc_value" id="tc_mode_label">Tensão medida (mV)</label><input id="tc_value" inputmode="decimal" value="4.096">
+        <label for="tc_ref" id="tc_ref_label">Temperatura da junta de referência (°C)</label><input id="tc_ref" inputmode="decimal" value="0">
+        <p class="note">Informe 0 °C quando a medição já estiver compensada pelo instrumento ou quando usar uma junta de referência em banho de gelo. Caso contrário, informe a temperatura real dos terminais de referência.</p>
+      </div>
+      <div class="out" aria-live="polite"><h3>Resultado</h3><div id="tc_out"></div>
+        <p class="fm">E<sub>quente</sub> = E<sub>medida</sub> + E(T<sub>referência</sub>)</p>
+      </div>
+      <div class="in tc-reference"><h3>Faixas dos tipos de termopar</h3><div class="scroll"><table id="tc_table" class="tc-table"></table></div>
+        <p class="note">Faixas das funções de referência ITS-90; não representam necessariamente a faixa operacional contínua de qualquer sonda comercial. Consulte a classe de tolerância, o revestimento e os limites do fabricante.</p>
+        <p class="note">No tipo B, a relação FEM-temperatura não é unívoca na região inferior a aproximadamente 250 °C; por isso, a conversão inversa é limitada à região em que há uma única solução.</p>
+      </div>
+    </div>
     <div class="pane" id="p3" role="tabpanel" hidden>
       <div class="in"><h3>Calculadora elétrica</h3>
         <label for="e_m">Sistema</label><select id="e_m"><option value="dc">Corrente contínua</option><option value="mono">Monofásico</option><option value="tri" selected>Trifásico</option></select>
