@@ -263,3 +263,5 @@ main,main>section,.alt,.hero,.home-highlights,.strip,.ft{background-color:transp
 .header-contact{display:inline-flex;align-items:center;justify-content:center;margin-left:18px;padding:10px 17px;border:1px solid var(--green,#00a716);border-radius:8px;color:var(--green,#00a716);font-weight:700;text-decoration:none;white-space:nowrap;transition:background .2s,color .2s}
 .header-contact:hover{background:var(--green,#00a716);color:#071007}
 @media(max-width:760px){.header-contact{margin:10px 0 0;align-self:flex-start}}
+/* Centraliza somente o texto do botão principal, preservando seu visual. */
+.hero-actions a.btn[href="#servicos"]{text-align:center}
