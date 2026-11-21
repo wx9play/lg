@@ -188,11 +188,12 @@
 </div></section>
 
 <section id="contato" class="contact-section"><div class="w contact-layout">
-  <div class="contact-copy"><h2 class="bar-l"><em>Fale Conosco</em></h2><p class="lead">Conte um pouco sobre sua necessidade. As informações serão encaminhadas à equipe da LG Tech Automação para avaliação e retorno.</p><p class="m">Preencha os quatro campos abaixo. Todos são obrigatórios.</p></div>
+  <div class="contact-copy"><h2 class="bar-l"><em>Fale Conosco</em></h2><p class="lead">Conte um pouco sobre sua necessidade. As informações serão encaminhadas à equipe da LG Tech Automação para avaliação e retorno.</p><p class="m">Preencha os cinco campos abaixo. Todos são obrigatórios.</p></div>
   <form id="quote-form" class="quote-form">
     <label for="quote-name">Nome</label><input id="quote-name" name="nome" type="text" placeholder="Seu nome" maxlength="100" required>
+    <label for="quote-email">E-mail</label><input id="quote-email" name="email" type="email" placeholder="seuemail@exemplo.com" maxlength="254" autocomplete="email" required>
     <label for="quote-company">Empresa</label><input id="quote-company" name="empresa" type="text" placeholder="Empresa que representa" maxlength="140" required>
-    <label for="quote-service">Serviço desejado</label><select id="quote-service" name="servico" required><option value="" selected disabled>Selecione um serviço</option><option>Automação de Processos</option><option>Painéis Elétricos</option><option>Programação de CLP/IHM</option><option>Implementação de Novos Equipamentos</option><option>Suporte Técnico para Clientes</option><option>Treinamentos Remotos</option><option>Outro</option></select>
+    <label for="quote-service">Serviço desejado</label><select id="quote-service" name="servico" required><option value="" selected disabled>Selecione um serviço</option><option>Automação de Processos</option><option>Painéis Elétricos</option><option>Programação de CLP/IHM</option><option>Implementação de Novos Equipamentos</option><option>Suporte Técnico para Clientes</option><option>Treinamentos Remotos</option><option>Sugerir ferramenta</option><option>Outro</option></select>
     <label for="quote-description">Descrição das necessidades</label><textarea id="quote-description" name="descricao" rows="6" maxlength="4000" placeholder="Descreva o processo, equipamento ou problema e o que você precisa." required></textarea>
     <button class="btn big" id="quote-submit" type="submit">Enviar solicitação</button>
     <p id="quote-status" class="form-status" role="status" aria-live="polite"></p>
