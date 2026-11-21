@@ -23,40 +23,40 @@ $$('[data-go]').forEach(b => b.onclick = () => { $('.tab[data-p="' + b.dataset.g
 
 // ===== Ícones industriais: traço consistente, maior leitura e contraste =====
 const ICO = {
-  automation:'<circle cx="12" cy="12" r="3"/><path d="M12 2v3M12 19v3M2 12h3m14 0h3M4.9 4.9 7 7m10 10 2.1 2.1M19.1 4.9 17 7M7 17l-2.1 2.1"/><path d="M8 12h-3m14 0h-3M12 8V5m0 14v-3"/>',
-  optimization:'<path d="M4 18a8 8 0 1 1 16 0"/><path d="m12 14 4-5M6 18h12"/><circle cx="12" cy="14" r="1.5"/>',
-  processAutomation:'<rect x="3" y="5" width="6" height="5" rx="1"/><rect x="15" y="14" width="6" height="5" rx="1"/><path d="M9 7.5h3a3 3 0 0 1 3 3V14M12 12l3 3 3-3"/><path d="M6 10v4h6"/>',
-  equipment:'<rect x="4" y="4" width="16" height="16" rx="2"/><path d="M9 4V2m6 2V2M9 22v-2m6 2v-2M4 9H2m2 6H2m20-6h-2m2 6h-2"/><circle cx="12" cy="12" r="3"/><path d="M12 9v6m-3-3h6"/>',
-  currentCable:'<path d="M4 4v5a4 4 0 0 0 4 4h8a4 4 0 0 1 4 4v3"/><path d="M2 4h4M18 20h4M12 5l-3 5h4l-1 5 4-7h-4l1-3z"/>',
-  gear:'<circle cx="12" cy="12" r="3.2"/><path d="M19.4 15a1.7 1.7 0 0 0 .34 1.88l.06.06-1.7 2.94-.09-.03a1.7 1.7 0 0 0-1.83.46l-.07.07h-3.4l-.02-.1a1.7 1.7 0 0 0-1.2-1.38 1.7 1.7 0 0 0-1.78.45l-.07.07-2.94-1.7.03-.09a1.7 1.7 0 0 0-.46-1.83l-.07-.07v-3.4l.1-.02a1.7 1.7 0 0 0 1.38-1.2 1.7 1.7 0 0 0-.45-1.78l-.07-.07 1.7-2.94.09.03a1.7 1.7 0 0 0 1.83-.46l.07-.07h3.4l.02.1a1.7 1.7 0 0 0 1.2 1.38 1.7 1.7 0 0 0 1.78-.45l.07-.07 2.94 1.7-.03.09a1.7 1.7 0 0 0 .46 1.83l.07.07v3.4z"/>',
-  panel:'<rect x="5" y="2.8" width="14" height="18.4" rx="1.5"/><path d="M8 6.5h8M8 10h3v3H8zM14 10h2M14 13h2M8 17h8M3 6h2M19 18h2"/>',
-  monitor:'<rect x="2.5" y="3.5" width="19" height="13" rx="1.5"/><path d="M8 21h8M12 16.5V21M6 12l3-3 2.5 2 4-4 2.5 2"/>',
-  tool:'<path d="M14.5 6.5a5 5 0 0 0 6.1 6.1L11 22.2 7.8 19z"/><path d="M5 4l4 4M3 6l4-4M4 20l7-7M15 4l5 5"/>',
-  headset:'<path d="M3 13v-1a9 9 0 0 1 18 0v1"/><rect x="2.5" y="12" width="4.5" height="7" rx="1.5"/><rect x="17" y="12" width="4.5" height="7" rx="1.5"/><path d="M17 19c-.8 2-2.5 2.5-5 2.5h-1"/>',
-  cap:'<path d="m2 9 10-5 10 5-10 5zM6 11v5c3.5 3 8.5 3 12 0v-5M22 9v6"/>',
-  wave:'<path d="M2 12h4l2.2-6 4 12 3.6-9 2.1 3H22"/>',
-  check:'<path d="M12 2.8 14.5 5l3.3-.1.9 3.1 2.8 1.8-1 3.1 1 3.1-2.8 1.8-.9 3.1-3.3-.1-2.5 2.2-2.5-2.2-3.3.1-.9-3.1-2.8-1.8 1-3.1-1-3.1 2.8-1.8.9-3.1 3.3.1zM8 12.2l2.6 2.6 5.6-5.7"/>',
-  user:'<circle cx="12" cy="6.5" r="3"/><path d="M5 21v-2a7 7 0 0 1 14 0v2M8 13l4 3 4-3M12 16v5"/>',
-  chart:'<path d="M3 20.5h18M5 18v-5h4v5M11 18V8h4v10M17 18V3h4v15M4 9l5-4 4 2 6-5"/>',
+  automation:'<circle cx="12" cy="12" r="3.2"/><circle cx="12" cy="12" r="8.2"/><path d="M12 1.8v2.4M12 19.8v2.4M1.8 12h2.4M19.8 12h2.4M4.8 4.8l1.7 1.7M17.5 17.5l1.7 1.7M19.2 4.8l-1.7 1.7M6.5 17.5l-1.7 1.7"/>',
+  optimization:'<path d="M3.5 18.5a8.5 8.5 0 1 1 17 0"/><path d="M12 14.5l4.5-5M5.5 18.5h13"/><circle cx="12" cy="14.5" r="1.5"/><path d="M12 5v2M5.8 8.2l1.4 1.4M18.2 8.2l-1.4 1.4"/>',
+  processAutomation:'<rect x="2.5" y="4" width="6.5" height="5.5" rx="1.2"/><rect x="15" y="14.5" width="6.5" height="5.5" rx="1.2"/><rect x="8.8" y="9.2" width="6.4" height="5.5" rx="1.2"/><path d="M9 6.8h2.2a2 2 0 0 1 2 2v.4M15.2 12h1.2a2 2 0 0 1 2 2v.5M12 14.7v2.1H6v-2.1"/>',
+  equipment:'<rect x="4.5" y="4.5" width="15" height="15" rx="2.2"/><path d="M9 2v2.5M15 2v2.5M9 19.5V22M15 19.5V22M2 9h2.5M2 15h2.5M19.5 9H22M19.5 15H22"/><circle cx="12" cy="12" r="3.2"/><path d="M12 9.5v5M9.5 12h5"/>',
+  currentCable:'<path d="M4 3v5a4 4 0 0 0 4 4h8a4 4 0 0 1 4 4v5"/><path d="M2 3h4M18 21h4"/><path d="m12 5-3 5h4l-1 5 4-7h-4l1-3z"/>',
+  gear:'<circle cx="12" cy="12" r="3"/><path d="M19.4 13.5a7.8 7.8 0 0 0 0-3l1.7-1.3-1.8-3.1-2 .8a7.8 7.8 0 0 0-2.6-1.5L14.4 3h-4.8l-.3 2.4a7.8 7.8 0 0 0-2.6 1.5l-2-.8-1.8 3.1 1.7 1.3a7.8 7.8 0 0 0 0 3l-1.7 1.3 1.8 3.1 2-.8a7.8 7.8 0 0 0 2.6 1.5l.3 2.4h4.8l.3-2.4a7.8 7.8 0 0 0 2.6-1.5l2 .8 1.8-3.1z"/>',
+  panel:'<rect x="5" y="2.5" width="14" height="19" rx="1.8"/><path d="M8 6h8M8 9.5h3v3H8zM14 10h2M14 12.5h2M8 16h8M3 6h2M19 18h2"/><circle cx="16" cy="16" r=".7"/>',
+  monitor:'<rect x="2.5" y="3.5" width="19" height="13.5" rx="1.8"/><path d="M8 21h8M12 17v4M5.5 13l4-4 3 2.5 5-5 1.5 1.5"/><circle cx="17.5" cy="6.5" r="1"/>',
+  tool:'<path d="M14.5 6.2a5.2 5.2 0 0 0 6.2 6.2L11 22l-4-4 9.5-9.5"/><path d="m5 3 5 5M3 5l5-5M4 20l5-5"/>',
+  headset:'<path d="M3 13v-1a9 9 0 0 1 18 0v1"/><rect x="2.5" y="12" width="4.5" height="7" rx="1.7"/><rect x="17" y="12" width="4.5" height="7" rx="1.7"/><path d="M17 19c-.8 2-2.5 2.5-5 2.5h-1.5"/><circle cx="12" cy="21.5" r=".5"/>',
+  cap:'<path d="m2 9 10-5 10 5-10 5z"/><path d="M6 11v5.2c3.5 3 8.5 3 12 0V11M22 9v6"/><path d="M19 16v3"/>',
+  wave:'<path d="M2 12h4l2.5-6.5L13 19l3.2-10 2.3 3H22"/><circle cx="8.5" cy="5.5" r=".8"/>',
+  check:'<path d="M12 2.5 14.7 5l3.6-.1 1 3.4 3 1.9-1.1 3.4 1.1 3.4-3 1.9-1 3.4-3.6-.1L12 24l-2.7-2.5-3.6.1-1-3.4-3-1.9 1.1-3.4-1.1-3.4 3-1.9 1-3.4 3.6.1z"/><path d="m7.5 12.5 3 3 6-6"/>',
+  user:'<circle cx="12" cy="7" r="3.2"/><path d="M5 21v-2a7 7 0 0 1 14 0v2M8 13l4 3 4-3M12 16v5"/>',
+  chart:'<path d="M3 21h18M5 18v-5h4v5M11 18V8h4v10M17 18V3h4v15"/><path d="m4 9 5-4 4 2 6-5"/><path d="M17 2h2v2"/>',
   target:'<circle cx="11" cy="13" r="8"/><circle cx="11" cy="13" r="4"/><path d="m11 13 9-9M15 4h5v5"/>',
   eye:'<path d="M2 12s3.7-7 10-7 10 7 10 7-3.7 7-10 7S2 12 2 12z"/><circle cx="12" cy="12" r="3"/>',
-  hand:'<path d="m3 12 4-4 4 2 3-2 7 5-5 6-4-1-3 1zM8 15l3 3M11 10l4 4M14 8l3 3"/>',
-  wire:'<rect x="2.5" y="7" width="6" height="10" rx="1"/><rect x="15.5" y="7" width="6" height="10" rx="1"/><path d="M8.5 12h7M5.5 4v3M18.5 4v3M5.5 17v3M18.5 17v3"/>',
-  sensor:'<rect x="4" y="8" width="10" height="8" rx="1.5"/><path d="M14 10h3v4h-3M18 7q4 5 0 10M20 4q6 8 0 16M7 8V5h4v3"/>',
-  ladder:'<path d="M4 3v18M20 3v18M4 7h5M15 7h5M9 5v4M15 5v4M4 17h5M15 17h5M9 15v4M15 15v4"/>',
-  cable:'<path d="M2 12a4 4 0 1 0 8 0 4 4 0 0 0-8 0zM10 12h3M13 12l8-6M13 12h9M13 12l8 6M4 9l3 6"/>',
-  code:'<rect x="2.5" y="3.5" width="19" height="14" rx="1.5"/><path d="M9 21h6M12 17.5V21M10 8l-3 2.5 3 2.5M14 8l3 2.5-3 2.5"/>'
+  hand:'<path d="M4 12.5 8 9l3 1.5 3-2 6 4.5-5 6-4-1-3 1-4-6.5z"/><path d="m8 15 3 3m0-7 4 4m-1-6 3 3"/>',
+  wire:'<rect x="2.5" y="7" width="6" height="10" rx="1.2"/><rect x="15.5" y="7" width="6" height="10" rx="1.2"/><path d="M8.5 12h7M5.5 4v3M18.5 4v3M5.5 17v3M18.5 17v3"/><circle cx="5.5" cy="12" r="1"/><circle cx="18.5" cy="12" r="1"/>',
+  sensor:'<rect x="3" y="8" width="11" height="8" rx="1.5"/><path d="M14 10h3v4h-3M18 7q4 5 0 10M20 4q6 8 0 16M6 8V5h5v3"/><circle cx="8.5" cy="12" r="1"/>',
+  ladder:'<path d="M4 2.5v19M20 2.5v19M4 6h5M15 6h5M9 4v4M15 4v4M4 18h5M15 18h5M9 16v4M15 16v4"/><path d="M9 11h6M12 9v4"/>',
+  cable:'<circle cx="5.5" cy="12" r="3.5"/><path d="M9 12h4M13 12l8-6M13 12h8M13 12l8 6"/><circle cx="5.5" cy="12" r="1"/>',
+  code:'<rect x="2.5" y="3.5" width="19" height="14" rx="1.8"/><path d="M9 21h6M12 17.5V21M10 8l-3 2.5 3 2.5M14 8l3 2.5-3 2.5"/>'
 };
 $$('.ic[data-i]').forEach(e => e.innerHTML = `<svg viewBox="0 0 24 24" aria-hidden="true">${ICO[e.dataset.i] || ''}</svg>`);
 
 // ===== Áreas de atuação: pictogramas industriais mais reconhecíveis =====
 const AREA_ICONS = {
-  motor:'<rect x="5" y="7" width="13" height="10" rx="2"/><path d="M18 10h2v4h-2M5 10H3v4h2M8 7V5h7v2M9 17v2h5v-2M10 10l4 2-4 2z"/>',
-  plc:'<rect x="4" y="4" width="16" height="16" rx="2"/><path d="M8 8h3v3H8zM14 8h2M14 11h2M8 15h8M10 20v2M14 20v2M2 8h2M20 16h2"/>',
-  instrument:'<circle cx="12" cy="12" r="8"/><path d="M12 12l4-4M12 4V2M8 20v2M16 20v2M5 18l-2 2M19 18l2 2"/><circle cx="12" cy="12" r="1.2"/>',
-  process:'<path d="M3 19V5M3 19h18M5 16l4-5 3 2 5-7 4 3"/><circle cx="17" cy="6" r="1.2"/>',
-  network:'<rect x="3" y="3" width="6" height="5" rx="1"/><rect x="15" y="3" width="6" height="5" rx="1"/><rect x="9" y="16" width="6" height="5" rx="1"/><path d="M6 8v4h12V8M12 12v4"/>',
-  integration:'<rect x="8" y="8" width="8" height="8" rx="1"/><path d="M2 12h6M16 12h6M12 2v6M12 16v6M4 9v6M20 9v6"/>'
+  motor:'<rect x="4" y="7" width="14" height="10" rx="2"/><path d="M18 10h3v4h-3M4 10H2v4h2M7 7V5h8v2M8 17v2h6v-2M9 10l5 2-5 2z"/><path d="M11 5V3"/>',
+  plc:'<rect x="4" y="3" width="16" height="18" rx="2"/><rect x="7" y="6" width="4" height="4" rx=".5"/><path d="M14 7h3M14 10h3M7 14h10M7 17h3M13 17h4M2 8h2M20 16h2"/>',
+  instrument:'<circle cx="12" cy="12" r="8.5"/><path d="M12 12l4.5-4.5M12 3.5V2M8 20v2M16 20v2M5 18l-2 2M19 18l2 2"/><circle cx="12" cy="12" r="1.5"/>',
+  process:'<path d="M3 20V4M3 20h18"/><path d="m5 16 4-5 3 2 5-7 3 2"/><circle cx="17" cy="6" r="1.2"/><path d="M7 4h4"/>',
+  network:'<rect x="2.5" y="3" width="7" height="5.5" rx="1"/><rect x="14.5" y="3" width="7" height="5.5" rx="1"/><rect x="8.5" y="16" width="7" height="5" rx="1"/><path d="M6 8.5v3.5h12V8.5M12 12v4"/>',
+  integration:'<rect x="7.5" y="7.5" width="9" height="9" rx="1.5"/><path d="M2 12h5.5M16.5 12H22M12 2v5.5M12 16.5V22"/><path d="m4 9-2 3 2 3m16-6 2 3-2 3M9 4l3-2 3 2m-6 16 3 2 3-2"/>'
 };
 const areas = [
   ['Controle de Motores','Partida, controle e acionamento de motores elétricos.','motor'],
