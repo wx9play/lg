@@ -177,6 +177,13 @@
     const key=a.getAttribute('href').slice(1);
     if(pageMap[key]){e.preventDefault();showPage(key);history.replaceState(null,'','#'+key);}
   }));
+  document.querySelectorAll('[data-open-page]').forEach(b=>b.addEventListener('click',()=>{
+    const page=b.dataset.openPage;
+    if(pageMap[page]){
+      showPage(page);
+      history.replaceState(null,'','#'+page);
+    }
+  }));
   document.querySelectorAll('[data-go]').forEach(b=>{b.onclick=null;b.addEventListener('click',()=>{
     showPage('ferramentas');
     const map={p1:'p-signal',p2:'p-un',p3:'p-ele',p4:'p-ele',p5:'p-sens',p6:'p-rtd',p7:'p-panel',p8:'p-thermo'};
