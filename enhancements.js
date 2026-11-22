@@ -17,7 +17,6 @@
       <button class="tab" role="tab" aria-selected="false" data-p="p-sens">Sensores</button>
       <button class="tab" role="tab" aria-selected="false" data-p="p-panel">Dimensionamento de painéis</button>
       <button class="tab" role="tab" aria-selected="false" data-p="p-thermo">Termopares</button>
-      <button class="tab" role="tab" aria-selected="false" data-p="p-ladder">Lógicas Ladder</button>
     </div>
     <div class="pane" id="p-signal" hidden>
       <div class="in"><h3>Conversor de sinais industriais</h3>
@@ -87,7 +86,6 @@
         <p class="note">No tipo B, a relação FEM-temperatura não é unívoca na região inferior a aproximadamente 250 °C; por isso, a conversão inversa é limitada à região em que há uma única solução.</p>
       </div>
     </div>
-    <div class="pane one" id="p-ladder" hidden><div class="in"><h3>Exemplos básicos de lógica Ladder industrial</h3><p class="m">Diagramas didáticos para estudo. As lógicas devem ser adaptadas às condições de segurança e ao hardware da máquina.</p><div id="ladder-list" class="grid ladder-grid"></div></div></div>
   `;
 
   // Inicializa o conversor de termopares após recriar a área de ferramentas.
@@ -322,13 +320,5 @@
   });
   $('#pn-calc').addEventListener('click',calcPanel);$('#panel-io').addEventListener('input',calcPanel);['#pn-h','#pn-w','#pn-door'].forEach(s=>$(s).addEventListener('input',calcPanel));calcPanel();
 
-  // Exemplos de Ladder em representação de trilhos e contatos.
-  const ladder=[
-    ['Partida direta com selo','O botão LIGA energiza a bobina KM1. O contato auxiliar KM1 mantém a saída ligada após soltar o botão. DESLIGA e emergência interrompem o circuito.','|---[/ EMERG]---[/ DESLIGA]---+---[ LIGA ]----( KM1 )---|\n|                              +---[ KM1  ]----|','Entradas: I0.0 emergência OK (NF), I0.1 desliga (NF), I0.2 liga (NA). Saída: Q0.0 contator KM1.'],
-    ['Controle de nível ON/OFF de tanque','A bomba liga quando o nível atinge o sensor de nível baixo e permanece ligada até o sensor de nível alto atuar.','|---[/ NIVEL_ALTO]---+---[ NIVEL_BAIXO ]---( BOMBA )---|\n|                    +---[ BOMBA       ]---|','Entradas: I0.0 nível alto (NA), I0.1 nível baixo (NA). Saída: Q0.0 bomba. Ajustar a lógica conforme o tipo de boia e estado normal dos contatos.'],
-    ['Intertravamento entre motores','Impede que dois motores incompatíveis funcionem simultaneamente, utilizando contatos auxiliares cruzados.','|---[ CMD_M1 ]---[/ KM2 ]----------------( KM1 )---|\n|---[ CMD_M2 ]---[/ KM1 ]----------------( KM2 )---|','Entradas: comandos M1 e M2. Saídas: Q0.0 KM1 e Q0.1 KM2. Para reversão de motores, implementar também intertravamento elétrico e mecânico.'],
-    ['Alarme de nível alto','Aciona uma saída de alarme quando o sensor de nível máximo detectar condição de tanque cheio.','|---[ NIVEL_MAXIMO ]--------------------( ALARME )---|','Entrada: I0.2 sensor de nível máximo. Saída: Q0.2 alarme sonoro/visual. Pode ser combinado com parada da bomba ou fechamento de válvula.'],
-    ['Temporização de partida','Após o comando de partida, inicia um temporizador TON. A saída é liberada somente depois do tempo ajustado.','|---[ COMANDO ]------------------------[ TON T1 ]---|\n|---[ T1.Q ]----------------------------( SAIDA )---|','Exemplo: TON de 5 s para atraso de acionamento de ventilador, bomba auxiliar ou sinalização.']
-  ];
-  $('#ladder-list').innerHTML=ladder.map(([t,d,diag,io])=>`<article class="card ladder-card"><h3>${t}</h3><p>${d}</p><pre class="ladder-diagram">${diag}</pre><p class="m"><b>I/O e observações:</b> ${io}</p></article>`).join('');
+
 })();
