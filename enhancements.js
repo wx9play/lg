@@ -161,7 +161,7 @@
 
   const main=$('main');
   const homeNodes=[main.querySelector('#inicio'),main.querySelector('.strip'),main.querySelector('.home-highlights'),main.querySelector('.home-highlights + .cta')];
-  const pageMap={inicio:homeNodes,sobre:[$('#sobre')],servicos:[$('#servicos')],portfolio:[$('#portfolio')],ferramentas:[$('#ferramentas')],contato:[$('#contato')]};
+  const pageMap={inicio:homeNodes,sobre:[$('#sobre')],servicos:[$('#servicos')],portfolio:[$('#portfolio')],ferramentas:[$('#ferramentas')],ligacoes:[$('#ligacoes')],contato:[$('#contato')]};
   const mainChildren=[...main.children];
   function showPage(name,scroll=true){
     const selected=pageMap[name]||pageMap.inicio;
