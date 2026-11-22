@@ -274,3 +274,13 @@ main,main>section,.alt,.hero,.home-highlights,.strip,.ft{background-color:transp
 .tc-table td{color:#d4d9d5}
 .tc-table td:first-child{color:#00a716;font-weight:800}
 @media(max-width:760px){.tc-table{font-size:.82rem}.tc-table th,.tc-table td{padding:8px 6px}}
+
+
+/* ===== Exemplos de ligações: galeria em lista ===== */
+.wiring-section{background:linear-gradient(180deg,#080d08,#050805)}
+.wiring-intro{margin-bottom:30px}
+.wiring-list{display:flex;flex-direction:column;gap:26px}
+.wiring-item{padding:24px;background:linear-gradient(150deg,#101a10,#070b07);border:1px solid var(--ln);border-radius:16px;box-shadow:var(--glow)}
+.wiring-item h3{color:#fff;border-left:4px solid var(--g);padding:5px 0 5px 14px;margin:0 0 18px;font-size:clamp(1.05rem,2vw,1.35rem)}
+.wiring-item img{display:block;width:100%;height:auto;max-height:850px;object-fit:contain;margin:0 auto;background:#202830;border-radius:8px}
+@media(max-width:760px){.wiring-item{padding:12px}.wiring-item img{max-height:none}.wiring-list{gap:16px}}
